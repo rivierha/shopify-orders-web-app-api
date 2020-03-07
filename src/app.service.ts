@@ -28,7 +28,7 @@ export class AppService {
         order_number:  data.order_number ,
         order_createdAt:  data.created_at ,
         total_price_set: data.total_price_set ,
-        total_discount_set: data.total_discount_set ,
+        total_discount_set: data.total_discounts_set ,
         total_line_items_price_set: data.total_line_items_price_set ,
         fulfillment_status:  data.fulfillment_status ,
         order_status_url:  data.order_status_url ,
@@ -36,14 +36,15 @@ export class AppService {
         total_shipping_price_set:  data.total_shipping_price_set ,
         total_tax_set:  data.total_tax_set ,
         line_items: data.line_items ,
-        shippingLines: data.shippingLines ,
-        billing_Address: data.billing_Address ,
+        shipping_lines: data.shipping_lines ,
+        billing_address: data.billing_address ,
         shipping_address:  data.shipping_address ,
         customer_id: newCustomer._id
       }
       let orderBody: any = this.appendDetails('create', order)
       const newOrder = await this.ordersService.createOrder(orderBody)
       Logger.log(newOrder, "ORDER")
+      return {newOrder, newCustomer}
 
     } catch (error) {
       Logger.error(error,"Error")

@@ -25,10 +25,10 @@ export class CustomersController {
     async createCustomer(@Res() res, @Body() body, ) {
         try {
             body = this.customersService.appendDetails('create', body)
-            const order = await this.customersService.createCustomer(body)
+            const customer = await this.customersService.createCustomer(body)
             return res.status(HttpStatus.OK).json({
                 message: "Customer has been successfully created",
-                order
+                customer
             })
         } catch (err) {
             Logger.error(err);
@@ -45,8 +45,8 @@ export class CustomersController {
     @Get('/')
     async getAllCustomers(@Res() res, @Param() queryParams, ) {
         try {
-            const orders = await this.customersService.getAllCustomers(queryParams);
-            return res.status(HttpStatus.OK).json(orders);
+            const customers = await this.customersService.getAllCustomers(queryParams);
+            return res.status(HttpStatus.OK).json(customers);
         } catch (err) {
             Logger.error(err);
             throw new HttpException(
@@ -62,9 +62,9 @@ export class CustomersController {
     @Get('/:id')
     async getCustomerById(@Res() res, @Param('id') id, ) {
         try {
-            const order = await this.customersService.getCustomer(id);
-            if (!order) throw new NotFoundException('Customer does not exist!');
-            return res.status(HttpStatus.OK).json(order);
+            const customer = await this.customersService.getCustomer(id);
+            if (!customer) throw new NotFoundException('Customer does not exist!');
+            return res.status(HttpStatus.OK).json(customer);
         } catch (err) {
             Logger.error(err);
             throw new HttpException(
@@ -81,11 +81,11 @@ export class CustomersController {
     async updateCustomerById(@Res() res, @Param('id') id, @Body() body) {
         try {
             body = this.customersService.appendDetails('update', body)
-            const order = await this.customersService.updateCustomerById(id, body);
-            if (!order) throw new NotFoundException('Customer does not exist!');
+            const customer = await this.customersService.updateCustomerById(id, body);
+            if (!customer) throw new NotFoundException('Customer does not exist!');
             return res.status(HttpStatus.OK).json({
                 message: 'Customer has been successfully updated',
-                order
+                customer
             })
         } catch (err) {
             Logger.error(err);
@@ -102,11 +102,11 @@ export class CustomersController {
     @Delete('/:id')
     async deleteCustomer(@Res() res, @Param('id') id, ) {
         try {
-            const order = await this.customersService.deleteCustomer(id);
-            if (!order) throw new NotFoundException('Customer does not exist!');
+            const customer = await this.customersService.deleteCustomer(id);
+            if (!customer) throw new NotFoundException('Customer does not exist!');
             return res.status(HttpStatus.OK).json({
                 message: 'Customer has been deleted',
-                order
+                customer
             })
         } catch (err) {
             Logger.error(err);

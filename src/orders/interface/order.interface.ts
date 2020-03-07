@@ -13,8 +13,8 @@ export interface Order extends Document {
     readonly total_shipping_price_set:  {};
     readonly total_tax_set:  {};
     readonly line_items: [];
-    readonly shippingLines: [];
-    readonly billing_Address: {};
+    readonly shipping_lines: [];
+    readonly billing_address: {};
     readonly shipping_address:  {};
     readonly customer_id: string;
     readonly createdAt: Date;

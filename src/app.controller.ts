@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Req, Logger,HttpStatus, HttpException } from '@nestjs/common';
+import { Controller, Res, Post, Body, Req, Logger,HttpStatus, HttpException } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller('api/v1/')
@@ -7,9 +7,11 @@ export class AppController {
 
 
   @Post('/webhook/subscriptions')
-  async createOrderAndCustomer(@Body() body, @Req() req){
+  async createOrderAndCustomer(@Body() body, @Req() req, @Res() res){
     try {
-      this.appService.createOrderAndCustomer(body)
+      let a = this.appService.createOrderAndCustomer(body)
+      return res.status(HttpStatus.OK).json(a);
+
     } catch (err) {
       Logger.error(err);
       throw new HttpException(

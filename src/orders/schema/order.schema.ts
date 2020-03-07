@@ -13,9 +13,9 @@ export const OrderSchema = new mongoose.Schema({
     total_shipping_price_set:   {} ,
     total_tax_set:   {} ,
     line_items: [] ,
-    shippingLines: [] ,
-    billing_Address: {} ,
-    shipping_address:   {} ,
+    shipping_lines: [] ,
+    billing_address: {} ,
+    shipping_address:  {} ,
     customer_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'CustomerCollection'
