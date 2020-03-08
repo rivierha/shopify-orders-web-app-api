@@ -6,7 +6,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
   
   @Get('/')
-    async getAllCustomers() {
+    async getAllCustomers(@Res() res) {
         try {
             return res.status(HttpStatus.OK);
         } catch (err) {
