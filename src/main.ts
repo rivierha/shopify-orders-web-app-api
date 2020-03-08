@@ -6,7 +6,7 @@ async function bootstrap() {
   let whitelist = [
 		'localhost:3000',
 		'localhost:4200',
-		'http://bazinga-shopify.s3-website-us-east-1.amazonaws.com'
+		'bazinga-shopify.s3-website-us-east-1.amazonaws.com'
 	]
 	let matchOrigin = (origin) => {
 		if (!origin) {
@@ -33,6 +33,6 @@ async function bootstrap() {
 		credentials: true,
 	}
 	app.enableCors(corsOptions)
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
